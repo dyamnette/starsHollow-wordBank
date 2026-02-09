@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Clintfest Scavenger Hunt</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json">
+  <!---ios-->>
+  <link rel="apple-touch-icon" href="/icons/tester.png">
+  <meta name= "apple-mobile-web-app-status-bar" content="#f7df1e">
+<meta name="theme-color" content="#f7df1e">
+  <style>
+    .landing {
+      max-width: 960px;
+      margin: 8vh auto 6vh auto;
+      padding: 22px 18px;
+      width: 92%;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+      text-align: center;
+    }
+    .landing p { 
+      max-width: 800px; 
+      margin: 0.5em auto 1em auto; 
+      line-height: 1.5; 
+      color: #f3e9ff; 
+    }
+    .cta {
+      margin-top: 8px;
+    }
+    .previews {
+      margin: 18px auto 6px auto;
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      justify-items: center;
+    }
+    @media (max-width: 740px) {
+      .previews { grid-template-columns: 1fr; }
+    }
+    figure { margin: 0; }
+    .previews > figure:last-child { grid-column: 1 / -1; }
+    figcaption { 
+      text-align: center; 
+      font-size: 12px; 
+      color: #f3e9ff; 
+      opacity: 0.9; 
+      margin-top: 6px; 
+    }
+    /* Make inline links readable against the background */
+    figcaption a { color: #ff9c2b; text-decoration: underline; font-weight: 700; }
+    figcaption a:visited { color: #ff9c2b; }
+    figcaption a:hover { filter: brightness(1.1); }
+    footer.reset-footer {
+      text-align: center;
+      font-size: 12px;
+      color: #f3e9ff;
+      opacity: 0.85;
+      margin: 28px 0 8px 0;
+      padding-bottom: calc(10px + env(safe-area-inset-bottom));
+    }
+    footer.reset-footer a {
+      color: #ff9c2b;
+      text-decoration: underline;
+      font-weight: 700;
+    }
+    footer.reset-footer a:visited { color: #ff9c2b; }
+    .preview-img {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 14px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,156,43,0.12);
+      background: rgba(0,0,0,0.15);
+      margin: 0 auto;
+    }
+  </style>
+  </head>
+  <body>
+    <a href="#" id="home-fab" class="home-fab" aria-label="Close and go home" title="Home">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.172 3 10v10h6v-6h6v6h6V10l-9-6.828zM21 9.236 12 3.764 3 9.236V8l9-6 9 6v1.236z"/></svg>
+    </a>
+    <div class="landing">
+      <h1>Welcome to the Clintfest 2 Scavenger Hunt!</h1>
+      <p>
+        If you can't wait to find out the lineup, you've come to the right place. 
+        On the day of Clintfest, QR codes will be hidden throughout The Webster labeled "Scavenger Hunt”. 
+        Scan one with your phone's camera to unlock a clue. Collect enough clues and 
+        you'll be able to unscramble the words and solve the mystery! 
+      </p>
+      <p>
+        <u>Make sure you allow cookies and aren't in incognito/privacy mode as a default.</u>
+      </p>
+      <div class="cta">
+        Start the puzzle by finding a QR code and scanning it with your phone!
+      </div>
+      <div class="previews">
+        <figure>
+          <img class="preview-img" src="clintfest-edits-scavenger.png" alt="Clue unlock screen after scanning a code" />
+          <figcaption>Look for these around The Webster</figcaption>
+        </figure>
+        <figure>
+          <img class="preview-img" src="clue.png" alt="Clue unlock screen after scanning a code" />
+          <figcaption>Scanning the QR code on your phone's camera will unlock a clue word.</figcaption>
+        </figure>
+        <figure>
+          <img class="preview-img" src="puzzle.png" alt="Use this page to unscramble the clues" />
+          <figcaption>Your <a href="puzzle.html">puzzle</a> page will hold all your clues and let you unscramble them</figcaption>
+        </figure>
+      </div>
+    </div>
+    <footer class="reset-footer">If for some crazy reason you need to reset everything and clear all of your progress, <a href="restart.html">click here</a>.</footer>
+    <!-- <script>
+      (function(){
+        var btn = document.getElementById('home-fab');
+        if(!btn) return;
+        function tryCloseOrNavigate(){
+          var destination = 'https://app.clintfest.com/';
+          // If running inside a PWA/WebView, attempt to close the window.
+          // window.close only works if this window was opened by script and is allowed by the container.
+          // We use multiple strategies and fall back to navigation.
+          var closed = false;
+          try {
+            window.open('', '_self');
+            window.close();
+            // Some browsers set closed flag asynchronously; schedule a fallback.
+            setTimeout(function(){ if(!closed) location.href = destination; }, 150);
+          } catch(_) {
+            location.href = destination;
+          }
+          // If the container exposes history, try going back if it helps, else navigate.
+          setTimeout(function(){
+            try {
+              if (document.hasFocus && document.hasFocus()) {
+                // Still here → fallback
+                location.href = destination;
+              }
+            } catch(_) {
+              location.href = destination;
+            }
+          }, 200);
+        }
+        btn.addEventListener('click', function(e){ e.preventDefault(); tryCloseOrNavigate(); });
+      })();
+    </script> --> 
+    <script>
+document.getElementById('home-fab')?.addEventListener('click', e => {
+  e.preventDefault();
+  window.location.href = 'puzzle.html';
+});
+</script>
+
+    <script>
+      if("serciveWorker" in navigator)
+    {
+      navigator.serciveWorker.register('serviceWorker.js');
+    }
+    </script>
+  </body>
+  </html>
+
+
