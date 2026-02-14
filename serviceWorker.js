@@ -2,7 +2,13 @@ var assests =
 [
     "/",
     "/index.html",
-    "script.js"
+    "/script.js",
+    "/manifest.json",
+    "/puzzle.html",
+    "/restart.html",
+    "/unlock.html",
+    "/icons/icon-192.png",
+    "/icons/icon-512.png"
 ]
 
 self.addEventListener("install", function(installEvent)
