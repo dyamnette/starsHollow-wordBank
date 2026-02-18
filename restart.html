@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Restart Puzzle</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .card {
+      max-width: 700px;
+      margin: 10vh auto 0 auto;
+      padding: 24px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      width: 92%;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+      text-align: center;
+    }
+    .actions {
+      margin-top: 18px;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .danger {
+      background: #ff4545;
+      color: #fff;
+    }
+    .secondary {
+      background: #2e52a0;
+      color: #f3e9ff;
+    }
+  </style>
+  <script>
+    function hardReset() {
+      localStorage.removeItem("wordBank");
+      localStorage.removeItem("scannedIds");
+      localStorage.removeItem("guesses");
+      localStorage.removeItem("bankOrder");
+      window.location.href = "puzzle.html";
+    }
+  </script>
+</head>
+<body>
+  <div class="card">
+    <h1>Start Over?</h1>
+    <p>This will erase all unlocked words and guesses. You can rescan QR codes to rebuild the word bank.</p>
+    <div class="actions">
+      <button class="danger" onclick="hardReset()">Yes, erase everything</button>
+      <a href="index.html"><button class="secondary">No, go back</button></a>
+    </div>
+  </div>
+</body>
+</html>
+
+
