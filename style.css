@@ -5,9 +5,9 @@ body {
   color: #f3e9ff;
   /* Layered background: poster watermark + gradients */
   background-image:
-    linear-gradient(180deg, rgba(42,11,69,0.85) 0%, rgba(27,8,48,0.92) 100%),
-    radial-gradient(1200px 700px at 80% -10%, rgba(94,46,160,0.55) 0%, rgba(94,46,160,0) 60%),
-    url('clintfest-poster.png');
+    linear-gradient(180deg, rgba(11, 20, 69, 0.85) 0%, rgba(15, 8, 48, 0.92) 100%),
+    radial-gradient(1200px 700px at 80% -10%, rgba(46, 54, 160, 0.55) 0%, rgba(46, 67, 160, 0) 60%),
+    url('icons/Lutz\ Snow\ Festival\ post\ bg.png');
   background-size: cover, cover, cover;
   background-position: center, 80% -10%, center top;
   background-repeat: no-repeat, no-repeat, no-repeat;
@@ -21,7 +21,7 @@ body {
 
 h1, h2, h3 {
   text-align: center;
-  color: #ff9c2b; /* Clint-Fest orange */
+  color: #dbd678; /* Lutz Blue */
   text-shadow: 0 2px 0 rgba(0,0,0,0.25);
 }
 
@@ -36,13 +36,13 @@ h3 { font-size: clamp(16px, 4vw, 24px); }
   gap: 10px;
   padding: 10px;
   min-height: 56px;
-  border: 2px dashed #ff9c2b;
+  border: 2px dashed #dbd678;
   border-radius: 12px;
   margin: 8px auto;
   width: 90%;
   justify-content: center;
   background: rgba(255, 255, 255, 0.06);
-  box-shadow: inset 0 0 0 1px rgba(255,156,43,0.06), 0 6px 18px rgba(0,0,0,0.25);
+  box-shadow: inset 0 0 0 1px rgba(255, 234, 43, 0.06), 0 6px 18px rgba(0,0,0,0.25);
 }
 
 /* Tighter row heading spacing to reduce vertical height */
@@ -50,8 +50,8 @@ h3 { font-size: clamp(16px, 4vw, 24px); }
 #word-bank h2 { margin: 8px 0; }
 
 .word {
-  background: #ff9c2b;
-  color: #2a0b45;
+  background: #0a06eb;
+  color: #45410b;
   padding: 12px 18px;
   border-radius: 24px;
   cursor: grab;
@@ -70,8 +70,8 @@ h3 { font-size: clamp(16px, 4vw, 24px); }
 }
 
 .word.inactive {
-  background: #c07a25;
-  color: #2a0b45;
+  background: #0a06eb;
+  color: #dbd678;
   cursor: default;
   opacity: 0.7;
 }
@@ -110,8 +110,8 @@ img {
   width: 48px;
   height: 48px;
   border-radius: 999px;
-  background: #ff9c2b;
-  color: #2a0b45;
+  background: #2e52a0;
+  color: #45410b;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -121,7 +121,7 @@ img {
 }
 .home-fab:hover { filter: brightness(1.05); }
 .home-fab:active { transform: scale(0.96); }
-.home-fab svg { width: 22px; height: 22px; fill: #2a0b45; }
+.home-fab svg { width: 22px; height: 22px; fill: #0b0c45; }
 
 /* Visual feedback for pointer-based drag */
 .drop-target-hover {
