@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Word Unlocked</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 2.5em 1.2em;
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+    }
+    #icon {
+      display: none;
+      width: min(160px, 40vw);
+      margin: 1em auto;
+    }
+    #btn {
+      display: none;
+      padding: 14px 28px;
+      font-size: clamp(18px, 4.5vw, 20px);
+      margin-top: 24px;
+      background: #2e52a0;
+      color: #dbd678;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 700;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    #btn:hover { filter: brightness(1.05); }
+    h1#message { color: #dbd678; text-shadow: 0 2px 0 rgba(0,0,0,0.25); font-size: clamp(22px, 6vw, 36px); }
+  </style>
+</head>
+<body>
+  <a href="#" id="home-fab" class="home-fab" aria-label="Close and go home" title="Home">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.172 3 10v10h6v-6h6v6h6V10l-9-6.828zM21 9.236 12 3.764 3 9.236V8l9-6 9 6v1.236z"/></svg>
+  </a>
+  <h1 id="message">Loading...</h1>
+  <img id="icon" src="icons/icon-512.png" alt="Try Again Icon" />
+  <br>
+  <a href="puzzle.html"><button id="btn">Go to Puzzle</button></a>
+  <p style="margin-top: 16px; font-size: 14px; color: #f3e9ff;">
+    If you need more instructions, <a href="index.html" style="color:#dbd678; font-weight:700; text-decoration: underline;">click here</a>.
+  </p>
+
+  <script>
+    (function(){
+      var btn = document.getElementById('home-fab');
+      if(btn){
+        btn.addEventListener('click', function(e){
+          e.preventDefault();
+          var destination = 'https://dyamnette.github.io/starsHollow-wordBank/';
+          try{ window.open('', '_self'); window.close(); setTimeout(function(){ location.href = destination; }, 150); }
+          catch(_){ location.href = destination; }
+        });
+      }
+    })();
+    document.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(window.location.search);
+      const word = params.get('word');
+      const id = params.get('id');
+      const isDecoy = params.has('decoy');
+
+      const msg = document.getElementById('message');
+      const icon = document.getElementById('icon');
+      const btn = document.getElementById('btn');
+
+      if (isDecoy) {
+        msg.innerHTML = "🌀 Try again!";
+        icon.style.display = 'block';
+        btn.style.display = 'inline-block';
+        return;
+      }
+
+      if (!word || !id) {
+        msg.innerText = "Invalid QR code.";
+        btn.style.display = 'inline-block';
+        return;
+      }
+
+      const scannedIds = JSON.parse(localStorage.getItem("scannedIds") || "[]");
+      const wordBank = JSON.parse(localStorage.getItem("wordBank") || "[]");
+
+      if (!scannedIds.includes(id)) {
+        // Store word-id pairs to allow same words with different IDs
+        // Ensure word is a string for iOS Safari compatibility
+        const wordEntry = { 
+          word: String(word || ''), 
+          id: String(id || '') 
+        };
+        wordBank.push(wordEntry);
+        scannedIds.push(id);
+        try {
+          localStorage.setItem("wordBank", JSON.stringify(wordBank));
+          localStorage.setItem("scannedIds", JSON.stringify(scannedIds));
+        } catch (e) {
+          console.error("Failed to save to localStorage:", e);
+        }
+        msg.innerText = `Congratulations!!! You unlocked: ${word}`;
+      } else {
+        msg.innerText = `Sorry, you've already scanned this code.`;
+      }
+
+      btn.style.display = 'inline-block';
+    });
+  </script>
+</body>
+</html>
