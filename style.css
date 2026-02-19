@@ -102,7 +102,7 @@ img {
   user-select: none;
 }
 
-/* Floating Home button (top-right) 
+/* Floating Home button (top-right) */
 .home-fab {
   position: fixed;
   top: calc(10px + env(safe-area-inset-top));
@@ -122,7 +122,7 @@ img {
 .home-fab:hover { filter: brightness(1.05); }
 .home-fab:active { transform: scale(0.96); }
 .home-fab svg { width: 22px; height: 22px; fill: #0b0c45; }
-*/
+
 
 /* Visual feedback for pointer-based drag */
 .drop-target-hover {
@@ -180,3 +180,4 @@ body.dragging-touch {
   from { transform: scale(0.8); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 } 
+
