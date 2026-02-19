@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Stars Hollow Puzzle</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="icons/icon-192.png">
+  <!---ios-->>
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name= "apple-mobile-web-app-status-bar" content="#f7df1e">
+  <meta name="theme-color" content="#f7df1e">
+  <style>
+    .actions-top {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 1em;
+    }
+    #undo-all {
+      display: inline-block;
+      margin: 0;
+      padding: 12px 22px;
+      font-size: clamp(16px, 4vw, 18px);
+      background-color: #2e52a0;
+      color: #f3e9ff;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    }
+    #undo-all:hover {
+      filter: brightness(1.08);
+    }
+    #instructions {
+      display: inline-block;
+      margin: 0;
+      padding: 12px 22px;
+      font-size: clamp(16px, 4vw, 18px);
+      background-color: #2e52a0;
+      color: #f3e9ff;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    }
+    #instructions:hover { filter: brightness(1.05); }
+    .remove {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #2e52a0;
+      color: #f3e9ff;
+      border-radius: 50%;
+      font-size: 15px;
+      width: 26px;
+      height: 26px;
+      text-align: center;
+      line-height: 26px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    .spacer { height: 36px; }
+    footer.legal {
+      text-align: center;
+      font-size: 12px;
+      color: #f3e9ff;
+      opacity: 0.8;
+      margin-top: 8px;
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+  .victory-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.victory-card {
+  background: #f7df1e;
+  color: #2e52a0;
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 90%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.victory-card h1 {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.victory-card p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.museum-credit {
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+#victory-close {
+  margin-top: 25px;
+  padding: 12px 20px;
+  background: #2e52a0;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+  </style>
+</head>
+<body>
+  <a href="#" id="home-fab" class="home-fab" aria-label="Close and go home" title="Home">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.172 3 10v10h6v-6h6v6h6V10l-9-6.828zM21 9.236 12 3.764 3 9.236V8l9-6 9 6v1.236z"/></svg>
+  </a>
+  <h1>Stars Hollow Festival Scavenger Hunt</h1>
+  <H3>All your scanned words will appear in the word bank below. Press and hold (don't move until you see the white highlight) to move the words out of the word bank and unscramble to answer the questions!</H3>
+  <div class="actions-top">
+    <button id="undo-all">Undo All Guesses</button>
+    <a href="index.html"><button id="instructions">Instructions</button></a>
+  </div>
+  
+  <section id="word-bank">
+    <h2>Word Bank</h2>
+    <div class="container" id="bank"></div>
+  </section>
+
+  <section id="rows">
+    <div class="row" data-row="1" data-length="2">
+      <h3>What was Richard’s favorite entrée as a boy?</h3>
+      <div class="drop-zone" data-zone="1"></div>
+    </div>
+    <div class="row" data-row="2" data-length="1">
+      <h3>What name does Lorelai give Luke’s toolbox?</h3>
+      <div class="drop-zone" data-zone="2"></div>
+    </div>
+    <div class="row" data-row="3" data-length="3">
+      <h3>What was the song playing for Rory & Dean’s first dance?</h3>
+      <div class="drop-zone" data-zone="3"></div>
+    </div>
+    <div class="row" data-row="4" data-length="6">
+      <h3>How does Paris meet Doyle?</h3>
+      <div class="drop-zone" data-zone="4"></div>
+    </div>
+    <div class="row" data-row="5" data-length="7">
+      <h3>What causes the “Great Stink” in Stars Hollow?</h3>
+      <div class="drop-zone" data-zone="5"></div>
+    </div>
+  </section>
+
+  <div class="spacer"></div>
+  <footer class="legal">Copyright © 2026 Lutz Children's Museum. All rights reserved.</footer>
+  <div id="victory-overlay" class="victory-overlay">
+  <div class="victory-box">
+    <h1>🎉 Scavenger Hunt Complete!</h1>
+    <p>You solved all the Stars Hollow questions!</p>
+    <button id="victory-close">Close</button>
+  </div>
+</div>
+  <script src="script.js"></script>
+  <script>
+document.getElementById('home-fab')?.addEventListener('click', e => {
+  e.preventDefault();
+  window.location.href = 'index.html';
+});
+</script>
+
+  <!---- <script>
+    (function(){
+      var btn = document.getElementById('home-fab');
+      if(!btn) return;
+      function tryCloseOrNavigate(){
+        var destination = 'https://app.clintfest.com/';
+        var closed = false;
+        try{ window.open('', '_self'); window.close(); setTimeout(function(){ if(!closed) location.href = destination; }, 150); }
+        catch(_){ location.href = destination; }
+        setTimeout(function(){ try{ if(document.hasFocus && document.hasFocus()) location.href = destination; } catch(_){ location.href = destination; } }, 200);
+      }
+      btn.addEventListener('click', function(e){ e.preventDefault(); tryCloseOrNavigate(); });
+    })();
+  </script>
+  <script>
+      if("serciveWorker" in navigator)
+    {
+      navigator.serciveWorker.register('serviceWorker.js');
+    }
+    </script> ----> 
+</body>
+</html>
