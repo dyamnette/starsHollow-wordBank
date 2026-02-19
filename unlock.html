@@ -52,17 +52,7 @@
   </p>
 
   <script>
-    (function(){
-      var btn = document.getElementById('home-fab');
-      if(btn){
-        btn.addEventListener('click', function(e){
-          e.preventDefault();
-          var destination = 'https://dyamnette.github.io/starsHollow-wordBank/';
-          try{ window.open('', '_self'); window.close(); setTimeout(function(){ location.href = destination; }, 150); }
-          catch(_){ location.href = destination; }
-        });
-      }
-    })();
+    
     document.addEventListener("DOMContentLoaded", () => {
       const params = new URLSearchParams(window.location.search);
       const word = params.get('word');
@@ -114,3 +104,4 @@
   </script>
 </body>
 </html>
+
